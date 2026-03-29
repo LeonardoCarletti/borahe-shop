@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BORAHE SHOP | Loja Oficial BTS</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#0e0e0e",
+                        "surface-low": "#131313",
+                        "surface-high": "#20201f",
+                        "surface-highest": "#262626",
+                        "on-surface": "#ffffff",
+                        "on-surface-variant": "#adaaaa",
+                        "primary": "#caa1fd",
+                        "secondary": "#deb7ff",
+                        "primary-container": "#b68fe8",
+                        "on-primary-container": "#320660",
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-surface text-on-surface scroll-smooth selection:bg-primary/30">
+    <!-- TopNavBar -->
+    <header class="fixed top-0 w-full flex justify-between items-center px-8 py-4 z-50 bg-surface/60 glass-nav border-b border-white/5">
+        <div class="text-2xl font-black tracking-tighter text-white uppercase font-headline">BORAHE SHOP</div>
+        <nav class="hidden lg:flex items-center gap-10">
+            <a class="nav-link active" href="#">Loja</a>
+            <a class="nav-link" href="#">Turnê</a>
+            <a class="nav-link" href="#">Álbuns</a>
+            <a class="nav-link" href="#">Colecionáveis</a>
+        </nav>
+        <div class="flex items-center gap-6">
+            <button id="cart-btn" class="relative group p-2">
+                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-white transition-all duration-300">shopping_cart</span>
+                <span id="cart-counter" class="absolute top-0 right-0 bg-primary text-on-primary-container text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+            </button>
+            <span class="material-symbols-outlined text-on-surface-variant hover:text-white cursor-pointer transition-all duration-300">account_circle</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover opacity-30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKLa2VWu5OWAbB1FrABgnvY-ywN6EoY9NFDvgCmKCW3DvD1pEL159s2hP9oVBd6zK_VGnjmytQ78r6DiknqnIE_aZpFREhrb-H51VXCTQfQ8HQRg1NB9gtJvEPKdiWZs0cyziAoMHruLLZcjcRdMXw1WubTnKMqT2bjQ8dz86vRDphh8nLl6j1inKavzZZNWK4UfB-pSQ-lt0r6rPLv_DCXEFLdvzsuUVjTUMWpqDhmsETK_mGB4Oyec7b98QTJQ1k7z5VdOK612M" alt="BTS Hero">
+                <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-surface/40"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+            </div>
+            <div class="container mx-auto px-8 z-10">
+                <div class="max-w-4xl space-y-6">
+                    <span class="inline-block px-4 py-1 border border-primary/30 rounded-full text-primary font-headline text-[10px] tracking-widest uppercase bg-primary/5">Official Global Drop</span>
+                    <h1 class="font-headline text-6xl md:text-9xl font-black tracking-tighter leading-none text-glow">
+                        BORAHE:<br/>
+                        <span class="text-transparent bg-clip-text holographic-gradient">YOUR WORLD.</span>
+                    </h1>
+                    <p class="font-body text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                        Explore o arquivo oficial de itens exclusivos selecionados para o ARMY global. Qualidade premium, conexão eterna.
+                    </p>
+                    <div class="flex flex-wrap gap-6 pt-4">
+                        <button onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="px-12 py-5 rounded-full holographic-gradient text-on-primary-container font-headline font-extrabold text-sm uppercase tracking-widest hover:shadow-[0_0_30px_rgba(202,161,253,0.5)] transition-all duration-500 transform hover:-translate-y-1">
+                            Comprar Agora
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Catalog -->
+        <section id="catalog" class="py-32 bg-surface">
+            <div class="container mx-auto px-8">
+                <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-20">
+                    <div class="space-y-4">
+                        <label class="font-headline text-primary font-bold tracking-[0.2em] uppercase text-[10px]">Coleção 2024</label>
+                        <h2 class="font-headline text-5xl font-black text-white italic tracking-tighter">LANÇAMENTOS EM DESTAQUE</h2>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="filter-btn active">Todos</button>
+                        <button class="filter-btn">Álbuns</button>
+                        <button class="filter-btn">Merch</button>
+                    </div>
+                </div>
+                
+                <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <!-- Gerado dinamicamente via JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-[60] pointer-events-none overflow-hidden">
+        <div id="cart-overlay" class="absolute inset-0 bg-black/80 backdrop-blur-md opacity-0 transition-opacity duration-500 pointer-events-none"></div>
+        <div id="cart-content" class="absolute top-0 right-0 w-full max-w-md h-full bg-surface-high border-l border-white/5 shadow-2xl translate-x-full transition-transform duration-500 pointer-events-auto flex flex-col">
+            <div class="p-8 border-b border-white/5 flex justify-between items-center bg-surface-highest/30">
+                <h2 class="text-2xl font-headline font-black text-white uppercase tracking-tighter">Seu Carrinho</h2>
+                <button id="close-cart" class="material-symbols-outlined text-on-surface-variant hover:text-white transition-colors">close</button>
+            </div>
+            
+            <div id="cart-items-container" class="flex-grow overflow-y-auto p-8 space-y-8">
+                <!-- Itens -->
+            </div>
+
+            <div class="p-8 border-t border-white/5 bg-surface-high/50 backdrop-blur-xl space-y-6">
+                <!-- Shipping & Coupon -->
+                <div class="space-y-4">
+                    <div class="flex gap-2">
+                        <input id="cep-input" type="text" placeholder="CEP: 00000-000" class="flex-grow bg-surface-low border border-white/10 rounded-lg px-4 py-2 text-sm text-white outline-none focus:border-primary transition-colors">
+                        <button id="calc-shipping" class="px-4 py-2 bg-surface-highest text-white text-[10px] font-bold uppercase rounded-lg border border-white/10">Calcular</button>
+                    </div>
+                    <div id="shipping-result" class="text-[10px] text-primary font-bold hidden"></div>
+                    
+                    <div class="flex gap-2">
+                        <input id="coupon-input" type="text" placeholder="CUPOM" class="flex-grow bg-surface-low border border-white/10 rounded-lg px-4 py-2 text-sm text-white outline-none focus:border-primary transition-colors uppercase">
+                        <button id="apply-coupon" class="px-4 py-2 bg-surface-highest text-white text-[10px] font-bold uppercase rounded-lg border border-white/10">Aplicar</button>
+                    </div>
+                </div>
+
+                <!-- Totals -->
+                <div class="space-y-2 py-4">
+                    <div class="flex justify-between text-on-surface-variant text-sm">
+                        <span>Subtotal</span>
+                        <span id="subtotal-val">R$ 0,00</span>
+                    </div>
+                    <div id="discount-row" class="flex justify-between text-primary text-sm hidden">
+                        <span>Desconto</span>
+                        <span id="discount-val">- R$ 0,00</span>
+                    </div>
+                    <div class="flex justify-between items-center text-white pt-2 border-t border-white/5">
+                        <span class="font-headline font-black uppercase text-xs">Total</span>
+                        <span id="total-val" class="font-headline font-black text-3xl">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <button id="checkout-main-btn" class="w-full py-5 rounded-full holographic-gradient text-on-primary-container font-headline font-black uppercase tracking-widest shadow-2xl hover:scale-[1.02] transition-transform">Finalizar Pedido</button>
+                <div class="flex justify-center items-center gap-2 opacity-30 text-[8px] uppercase font-bold tracking-widest text-on-surface-variant">
+                    <span class="material-symbols-outlined text-xs">verified_user</span> Pagamento seguro via Mercado Pago
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Logic -->
+    <script type="module">
+        import products from './js/products.js';
+        import * as Cart from './js/cart.js';
+        import { initializeCheckout } from './js/checkout.js';
+
+        // Initialize UI
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = products.map(p => `
+            <div class="product-card group relative">
+                <div class="relative overflow-hidden aspect-[3/4] rounded-2xl bg-surface-low border border-white/5 group-hover:border-primary/20 transition-all duration-500">
+                    <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    ${p.badge ? `<span class="absolute top-4 left-4 z-10 px-3 py-1 rounded bg-primary text-on-primary-container text-[8px] font-black uppercase tracking-[0.2em] shadow-lg">${p.badge}</span>` : ''}
+                    <div class="absolute inset-0 bg-black/60 translate-y-full group-hover:translate-y-0 transition-transform duration-500 flex items-center justify-center p-6">
+                        <button onclick="window.shopAddToCart(${p.id})" class="w-full py-4 bg-white text-black font-headline font-black text-[10px] uppercase tracking-widest rounded-full hover:bg-primary transition-colors">Adicionar</button>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-between items-start px-2">
+                    <div>
+                        <h3 class="text-white font-headline font-black italic uppercase tracking-tighter text-lg leading-none mb-2">${p.name}</h3>
+                        <p class="text-on-surface-variant text-[10px] font-bold uppercase tracking-widest">${p.category}</p>
+                    </div>
+                    <span class="text-primary font-headline font-black text-xl">R$ ${p.price.toFixed(0)}</span>
+                </div>
+            </div>
+        `).join('');
+
+        // Expose functions globally for simplicity in inline onClick
+        window.shopAddToCart = (id) => {
+            const product = products.find(p => p.id === id);
+            Cart.addToCart(product);
+        };
+
+        // Cart Actions
+        const syncUI = () => {
+            const items = Cart.getCart();
+            const counter = document.getElementById('cart-counter');
+            counter.innerText = items.reduce((a, b) => a + b.quantity, 0);
+            counter.classList.toggle('hidden', items.length === 0);
+
+            const totals = Cart.getCartTotals();
+            document.getElementById('subtotal-val').innerText = `R$ ${totals.subtotal.toFixed(2)}`;
+            document.getElementById('total-val').innerText = `R$ ${totals.total.toFixed(2)}`;
+            
+            const coupon = Cart.getActiveCoupon();
+            const discRow = document.getElementById('discount-row');
+            if (coupon) {
+                discRow.classList.remove('hidden');
+                document.getElementById('discount-val').innerText = `- R$ ${totals.discount.toFixed(2)}`;
+            } else {
+                discRow.classList.add('hidden');
+            }
+
+            const itemsContainer = document.getElementById('cart-items-container');
+            if (items.length === 0) {
+                itemsContainer.innerHTML = `<div class="text-center py-20 opacity-20"><span class="material-symbols-outlined text-6xl block mb-4">shopping_basket</span><p class="text-xs font-bold uppercase tracking-widest">Vazio</p></div>`;
+            } else {
+                itemsContainer.innerHTML = items.map(item => `
+                    <div class="flex gap-6 animate-fade-in group/item">
+                        <img src="${item.image}" class="w-20 h-20 object-cover rounded-xl border border-white/5">
+                        <div class="flex-grow">
+                            <h4 class="text-white font-headline font-black text-xs uppercase mb-1">${item.name}</h4>
+                            <div class="flex items-center gap-4 mt-4">
+                                <div class="flex items-center bg-surface-low rounded-lg p-1 border border-white/5">
+                                    <button onclick="window.shopUpdateQty(${item.id}, -1)" class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-white">remove</button>
+                                    <span class="px-3 text-xs font-bold">${item.quantity}</span>
+                                    <button onclick="window.shopUpdateQty(${item.id}, 1)" class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-white">add</button>
+                                </div>
+                                <span class="text-primary font-bold text-xs">R$ ${(item.price * item.quantity).toFixed(2)}</span>
+                            </div>
+                        </div>
+                        <button onclick="window.shopRemoveItem(${item.id})" class="material-symbols-outlined text-on-surface-variant hover:text-error text-[18px] opacity-0 group-hover/item:opacity-100 transition-opacity">close</button>
+                    </div>
+                `).join('');
+            }
+        };
+
+        window.shopRemoveItem = (id) => Cart.removeFromCart(id);
+        window.shopUpdateQty = (id, amt) => Cart.updateQuantity(id, amt);
+
+        window.addEventListener('cartUpdated', syncUI);
+        syncUI();
+
+        // UI Events
+        const btn = document.getElementById('cart-btn');
+        const drawer = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-overlay');
+        const content = document.getElementById('cart-content');
+        const close = document.getElementById('close-cart');
+
+        const openCart = () => {
+            drawer.classList.remove('pointer-events-none');
+            overlay.classList.add('opacity-100', 'pointer-events-auto');
+            content.classList.remove('translate-x-full');
+        };
+
+        const closeCart = () => {
+            overlay.classList.remove('opacity-100', 'pointer-events-auto');
+            content.classList.add('translate-x-full');
+            setTimeout(() => drawer.classList.add('pointer-events-none'), 500);
+        };
+
+        btn.onclick = openCart;
+        overlay.onclick = closeCart;
+        close.onclick = closeCart;
+
+        // Shipping & Coupon
+        document.getElementById('calc-shipping').onclick = () => {
+            const cep = document.getElementById('cep-input').value;
+            const res = Cart.calculateShipping(cep);
+            const box = document.getElementById('shipping-result');
+            if (res) {
+                box.innerText = `FRETE: R$ ${res.price.toFixed(2)} (${res.days} dias úteis)`;
+                box.classList.remove('hidden');
+            }
+        };
+
+        document.getElementById('apply-coupon').onclick = () => {
+            const code = document.getElementById('coupon-input').value;
+            if (Cart.applyCoupon(code)) {
+                syncUI();
+            } else {
+                alert('Cupom inválido!');
+            }
+        };
+
+        // Checkout
+        document.getElementById('checkout-main-btn').onclick = () => {
+            const url = initializeCheckout();
+            if (url) {
+                window.location.href = url; // In a real app, this would be your server endpoint
+            }
+        };
+
+    </script>
+</body>
+</html>
